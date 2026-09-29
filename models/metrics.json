@@ -1,0 +1,369 @@
+{
+  "splits": {
+    "train": [
+      "2021-01-03",
+      "2022-12-29",
+      3102
+    ],
+    "validation": [
+      "2023-01-06",
+      "2023-07-31",
+      781
+    ],
+    "test": [
+      "2023-08-01",
+      "2023-12-29",
+      748
+    ]
+  },
+  "regime_counts": {
+    "Active Monsoon": 1359,
+    "Break Monsoon": 1254,
+    "Western Disturbance": 605,
+    "Coastal Rainfall": 506,
+    "Monsoon Depression/Low": 474,
+    "Orographic Rainfall": 433
+  },
+  "regime_report": {
+    "validation": {
+      "accuracy": 0.9935979513444302,
+      "macro_f1": 0.9931601735434118,
+      "n": 781
+    },
+    "test": {
+      "accuracy": 0.9919786096256684,
+      "macro_f1": 0.9854650173774292,
+      "n": 748
+    }
+  },
+  "heavy": {
+    "heavy": {
+      "threshold": 64.5,
+      "events_train": 82,
+      "events_val": 6,
+      "events_test": 1,
+      "status": "trained",
+      "brier_val": 0.004772657138225843,
+      "brier_val_climatology": 0.007975079472834264,
+      "brier_test": 0.0007549022791355598,
+      "brier_test_climatology": 0.001965003633554506
+    },
+    "very_heavy": {
+      "threshold": 115.5,
+      "events_train": 18,
+      "events_val": 0,
+      "events_test": 0,
+      "status": "trained",
+      "brier_val": 0.00024258807082702427,
+      "brier_val_climatology": 3.367141932515005e-05,
+      "brier_test": 7.093492948522339e-07,
+      "brier_test_climatology": 3.3671419325150046e-05
+    },
+    "extreme": {
+      "threshold": 204.5,
+      "events_train": 1,
+      "events_val": 0,
+      "events_test": 0,
+      "status": "NOT ESTIMABLE: only 1 training event(s) >= 204.5 mm (need 10). No probability is produced."
+    }
+  },
+  "global_model": "RandomForest",
+  "regime_info": {
+    "Active Monsoon": {
+      "model": "RandomForest",
+      "train_rows": 922,
+      "val_rows": 252
+    },
+    "Break Monsoon": {
+      "model": "RandomForest",
+      "train_rows": 670,
+      "val_rows": 235
+    },
+    "Monsoon Depression/Low": {
+      "model": "RandomForest",
+      "train_rows": 391,
+      "val_rows": 39
+    },
+    "Coastal Rainfall": {
+      "model": "RandomForest",
+      "train_rows": 353,
+      "val_rows": 87
+    },
+    "Orographic Rainfall": {
+      "model": "RandomForest",
+      "train_rows": 348,
+      "val_rows": 58
+    },
+    "Western Disturbance": {
+      "model": "RandomForest",
+      "train_rows": 418,
+      "val_rows": 110
+    }
+  },
+  "verification": {
+    "validation": {
+      "continuous": [
+        {
+          "forecast": "Raw/Input",
+          "RMSE": 5.501774082400805,
+          "MAE": 2.6598207426376437,
+          "bias": -1.1934186939820741
+        },
+        {
+          "forecast": "Global correction",
+          "RMSE": 4.724222685964917,
+          "MAE": 2.4486776865354916,
+          "bias": 0.1495004015594796
+        },
+        {
+          "forecast": "Regime-aware correction",
+          "RMSE": 4.657435201699823,
+          "MAE": 2.4491064723116467,
+          "bias": 0.19287863032929725
+        }
+      ],
+      "categorical": [
+        {
+          "forecast": "Raw/Input",
+          "threshold": 2.5,
+          "events": 373,
+          "hits": 304,
+          "misses": 69,
+          "false_alarms": 61,
+          "POD": 0.8150134048257373,
+          "FAR": 0.16712328767123288,
+          "CSI": 0.7004608294930875,
+          "low_sample": false
+        },
+        {
+          "forecast": "Raw/Input",
+          "threshold": 15.5,
+          "events": 82,
+          "hits": 51,
+          "misses": 31,
+          "false_alarms": 6,
+          "POD": 0.6219512195121951,
+          "FAR": 0.10526315789473684,
+          "CSI": 0.5795454545454546,
+          "low_sample": false
+        },
+        {
+          "forecast": "Raw/Input",
+          "threshold": 64.5,
+          "events": 6,
+          "hits": 1,
+          "misses": 5,
+          "false_alarms": 0,
+          "POD": 0.16666666666666666,
+          "FAR": 0.0,
+          "CSI": 0.16666666666666666,
+          "low_sample": false
+        },
+        {
+          "forecast": "Global correction",
+          "threshold": 2.5,
+          "events": 373,
+          "hits": 319,
+          "misses": 54,
+          "false_alarms": 70,
+          "POD": 0.8552278820375335,
+          "FAR": 0.17994858611825193,
+          "CSI": 0.7200902934537246,
+          "low_sample": false
+        },
+        {
+          "forecast": "Global correction",
+          "threshold": 15.5,
+          "events": 82,
+          "hits": 65,
+          "misses": 17,
+          "false_alarms": 19,
+          "POD": 0.7926829268292683,
+          "FAR": 0.2261904761904762,
+          "CSI": 0.6435643564356436,
+          "low_sample": false
+        },
+        {
+          "forecast": "Global correction",
+          "threshold": 64.5,
+          "events": 6,
+          "hits": 3,
+          "misses": 3,
+          "false_alarms": 1,
+          "POD": 0.5,
+          "FAR": 0.25,
+          "CSI": 0.42857142857142855,
+          "low_sample": false
+        },
+        {
+          "forecast": "Regime-aware correction",
+          "threshold": 2.5,
+          "events": 373,
+          "hits": 316,
+          "misses": 57,
+          "false_alarms": 67,
+          "POD": 0.8471849865951743,
+          "FAR": 0.17493472584856398,
+          "CSI": 0.7181818181818181,
+          "low_sample": false
+        },
+        {
+          "forecast": "Regime-aware correction",
+          "threshold": 15.5,
+          "events": 82,
+          "hits": 68,
+          "misses": 14,
+          "false_alarms": 17,
+          "POD": 0.8292682926829268,
+          "FAR": 0.2,
+          "CSI": 0.6868686868686869,
+          "low_sample": false
+        },
+        {
+          "forecast": "Regime-aware correction",
+          "threshold": 64.5,
+          "events": 6,
+          "hits": 3,
+          "misses": 3,
+          "false_alarms": 2,
+          "POD": 0.5,
+          "FAR": 0.4,
+          "CSI": 0.375,
+          "low_sample": false
+        }
+      ]
+    },
+    "test": {
+      "continuous": [
+        {
+          "forecast": "Raw/Input",
+          "RMSE": 3.369177290522608,
+          "MAE": 1.8570588235294117,
+          "bias": -0.43390374331550813
+        },
+        {
+          "forecast": "Global correction",
+          "RMSE": 2.8107414201132483,
+          "MAE": 1.6561777177093924,
+          "bias": 0.2615681089707971
+        },
+        {
+          "forecast": "Regime-aware correction",
+          "RMSE": 2.842220343135402,
+          "MAE": 1.7044871541562543,
+          "bias": 0.3317423747079795
+        }
+      ],
+      "categorical": [
+        {
+          "forecast": "Raw/Input",
+          "threshold": 2.5,
+          "events": 285,
+          "hits": 227,
+          "misses": 58,
+          "false_alarms": 75,
+          "POD": 0.7964912280701755,
+          "FAR": 0.24834437086092714,
+          "CSI": 0.6305555555555555,
+          "low_sample": false
+        },
+        {
+          "forecast": "Raw/Input",
+          "threshold": 15.5,
+          "events": 35,
+          "hits": 19,
+          "misses": 16,
+          "false_alarms": 6,
+          "POD": 0.5428571428571428,
+          "FAR": 0.24,
+          "CSI": 0.4634146341463415,
+          "low_sample": false
+        },
+        {
+          "forecast": "Raw/Input",
+          "threshold": 64.5,
+          "events": 1,
+          "hits": 0,
+          "misses": 1,
+          "false_alarms": 0,
+          "POD": 0.0,
+          "FAR": NaN,
+          "CSI": 0.0,
+          "low_sample": true
+        },
+        {
+          "forecast": "Global correction",
+          "threshold": 2.5,
+          "events": 285,
+          "hits": 235,
+          "misses": 50,
+          "false_alarms": 71,
+          "POD": 0.8245614035087719,
+          "FAR": 0.23202614379084968,
+          "CSI": 0.6601123595505618,
+          "low_sample": false
+        },
+        {
+          "forecast": "Global correction",
+          "threshold": 15.5,
+          "events": 35,
+          "hits": 25,
+          "misses": 10,
+          "false_alarms": 8,
+          "POD": 0.7142857142857143,
+          "FAR": 0.24242424242424243,
+          "CSI": 0.5813953488372093,
+          "low_sample": false
+        },
+        {
+          "forecast": "Global correction",
+          "threshold": 64.5,
+          "events": 1,
+          "hits": 1,
+          "misses": 0,
+          "false_alarms": 0,
+          "POD": 1.0,
+          "FAR": 0.0,
+          "CSI": 1.0,
+          "low_sample": true
+        },
+        {
+          "forecast": "Regime-aware correction",
+          "threshold": 2.5,
+          "events": 285,
+          "hits": 241,
+          "misses": 44,
+          "false_alarms": 79,
+          "POD": 0.8456140350877193,
+          "FAR": 0.246875,
+          "CSI": 0.6620879120879121,
+          "low_sample": false
+        },
+        {
+          "forecast": "Regime-aware correction",
+          "threshold": 15.5,
+          "events": 35,
+          "hits": 27,
+          "misses": 8,
+          "false_alarms": 9,
+          "POD": 0.7714285714285715,
+          "FAR": 0.25,
+          "CSI": 0.6136363636363636,
+          "low_sample": false
+        },
+        {
+          "forecast": "Regime-aware correction",
+          "threshold": 64.5,
+          "events": 1,
+          "hits": 0,
+          "misses": 1,
+          "false_alarms": 0,
+          "POD": 0.0,
+          "FAR": NaN,
+          "CSI": 0.0,
+          "low_sample": true
+        }
+      ]
+    }
+  }
+}

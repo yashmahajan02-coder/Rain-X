@@ -1,0 +1,12 @@
+{
+ "test_year": 2023,
+ "n_train": 3102,
+ "n_test": 1529,
+ "regime_acc_vs_rule_labels": 0.9973839110529757,
+ "data_source": "Synthetic Demonstration Data",
+ "thresholds": [
+  64.5,
+  115.5,
+  204.5
+ ]
+}
